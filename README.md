@@ -1,7 +1,7 @@
 
 # ETL Orçamento SP
 
-Este projeto consiste em desenvolver um pipeline ETL para processar os dados do orçamento do Estado de São Paulo de 2022, convertendo valores dolarizados para reais e armazenando-os em um formato adequado para responder a perguntas analíticas.
+Este projeto consiste em desenvolver um pipeline ETL para processar os dados do orçamento do Estado de São Paulo de 2022, convertendo valores dolarizados para reais e armazenando-os em um formato adequado para responder às perguntas de negócio.
 
 
 
