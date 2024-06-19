@@ -1,0 +1,15 @@
+2024-06-19 15:22:46,534 - INFO - Início da transformação de despesas
+2024-06-19 15:22:46,554 - INFO - Dados de despesas transformados com sucesso
+2024-06-19 15:22:46,554 - INFO - Dados de despesas extraídos e transformados com sucesso!
+2024-06-19 15:22:46,564 - INFO - Início da transformação de receitas
+2024-06-19 15:22:46,572 - INFO - Dados de receitas transformados com sucesso
+2024-06-19 15:22:46,572 - INFO - Dados de receitas extraídos e transformados com sucesso!
+2024-06-19 15:23:12,267 - INFO - Início da transformação de despesas
+2024-06-19 15:23:12,284 - INFO - Dados de despesas transformados com sucesso
+2024-06-19 15:23:12,284 - INFO - Início da transformação de receitas
+2024-06-19 15:23:12,291 - INFO - Dados de receitas transformados com sucesso
+2024-06-19 15:23:12,322 - INFO - Conexão com banco de dados PostgreSQL estabelecida.
+2024-06-19 15:23:12,323 - INFO - Tabela criada com sucesso: orcamento
+2024-06-19 15:23:12,840 - INFO - Dados inseridos com sucesso na tabela orcamento.
+2024-06-19 15:23:12,840 - INFO - Conexão com banco de dados fechada.
+2024-06-19 15:23:12,840 - INFO - Processo ETL concluído com sucesso!

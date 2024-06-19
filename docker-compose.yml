@@ -1,0 +1,47 @@
+version: '3.7'
+services:
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: orcamento_sp  
+      POSTGRES_USER: larissa
+      POSTGRES_PASSWORD: larissa
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  webserver:
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://larissa:larissa@postgres/orcamento_sp
+      AIRFLOW__CORE__FERNET_KEY: 'B2eRiQw2UORWxB79y2Y9Ouu9ju0o4RmeJIz3wXIIE5M='
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./scripts:/opt/airflow/scripts
+      - ./entrypoint.sh:/entrypoint.sh
+    ports:
+      - "8080:8080"
+    command: ["/entrypoint.sh"]
+
+  scheduler:
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://larissa:larissa@postgres/orcamento_sp
+      AIRFLOW__CORE__FERNET_KEY: 'B2eRiQw2UORWxB79y2Y9Ouu9ju0o4RmeJIz3wXIIE5M='
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./scripts:/opt/airflow/scripts
+      - ./entrypoint.sh:/entrypoint.sh
+    command: ["/entrypoint.sh"]
+
+volumes:
+  postgres_data:
