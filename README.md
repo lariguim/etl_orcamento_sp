@@ -67,7 +67,7 @@ services:
     environment:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://larissa:larissa@postgres/orcamento_sp
-      AIRFLOW__CORE__FERNET_KEY: 'B2eRiQw2UORWxB79y2Y9Ouu9ju0o4RmeJIz3wXIIE5M='
+      AIRFLOW__CORE__FERNET_KEY: 'fernet_key'
       AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
       AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     volumes:
@@ -85,7 +85,7 @@ services:
     environment:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://larissa:larissa@postgres/orcamento_sp
-      AIRFLOW__CORE__FERNET_KEY: 'B2eRiQw2UORWxB79y2Y9Ouu9ju0o4RmeJIz3wXIIE5M='
+      AIRFLOW__CORE__FERNET_KEY: 'fernet_key'
     volumes:
       - ./dags:/opt/airflow/dags
       - ./scripts:/opt/airflow/scripts
