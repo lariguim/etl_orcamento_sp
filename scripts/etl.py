@@ -3,6 +3,7 @@ import scripts.load_data
 import scripts.transform
 import scripts.get_exchange_rate
 import logging
+from scripts import extract
 
 # logging 
 logging.basicConfig(level=logging.INFO,

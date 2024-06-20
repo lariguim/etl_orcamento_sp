@@ -1,9 +1,7 @@
 import requests
 
-
-
 def get_exchange_rate_on_date():
-    endpoint = f"https://economia.awesomeapi.com.br/json/daily/USD-BRL/?start_date=20220622&end_date=20220622"
+    endpoint = "https://economia.awesomeapi.com.br/json/daily/USD-BRL/?start_date=20220622&end_date=20220622"
    
     try:
         response = requests.get(endpoint)
@@ -21,4 +19,8 @@ def get_exchange_rate_on_date():
         print(f"Erro ao obter a taxa de câmbio: {e}")
         return None
 
-
+# Chamada da função para teste
+if __name__ == "__main__":
+    exchange_rate = get_exchange_rate_on_date()
+    if exchange_rate:
+        print(f"Taxa de câmbio atual: {exchange_rate}")
