@@ -1,7 +1,7 @@
 
 # ETL Orçamento SP
 
-Este projeto consiste em desenvolver um pipeline ETL para processar os dados do orçamento do Estado de São Paulo de 2022, convertendo valores dolarizados para reais e armazenando-os em um formato adequado para responder a perguntas analíticas.
+Este projeto consiste em desenvolver um pipeline ETL para processar os dados do orçamento do Estado de São Paulo de 2022, convertendo valores dolarizados para reais e armazenando-os em um formato adequado para responder às perguntas de negócio.
 
 
 
@@ -67,7 +67,7 @@ services:
     environment:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://larissa:larissa@postgres/orcamento_sp
-      AIRFLOW__CORE__FERNET_KEY: 'B2eRiQw2UORWxB79y2Y9Ouu9ju0o4RmeJIz3wXIIE5M='
+      AIRFLOW__CORE__FERNET_KEY: 'fernet_key'
       AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
       AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     volumes:
@@ -85,7 +85,7 @@ services:
     environment:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://larissa:larissa@postgres/orcamento_sp
-      AIRFLOW__CORE__FERNET_KEY: 'B2eRiQw2UORWxB79y2Y9Ouu9ju0o4RmeJIz3wXIIE5M='
+      AIRFLOW__CORE__FERNET_KEY: 'fernet_key'
     volumes:
       - ./dags:/opt/airflow/dags
       - ./scripts:/opt/airflow/scripts
@@ -162,7 +162,10 @@ Uma vez que os dados estejam carregados na tabela, você pode utilizar as seguin
 **1. Quais são as 5 fontes de recursos que mais arrecadaram?**
 
 ```sql
-  SELECT * FROM orcamento ORDER BY Total_Arrecadado DESC LIMIT 5;
+select id_fonte_recurso, nome_fonte_recurso, total_arrecadado 
+from orcamento
+order by total_arrecadado DESC
+limit 5;
 ```
 - 001	TESOURO-DOT.INICIAL E CRED.SUPLEMENTAR
 - 006	OUTRAS FONTES DE RECURSOS
@@ -174,8 +177,10 @@ Uma vez que os dados estejam carregados na tabela, você pode utilizar as seguin
 **2. Quais são as 5 fontes de recursos que mais gastaram?**
 
 ```sql
-  SELECT * FROM orcamento ORDER BY Total_Liquidado DESC LIMIT 5;
-
+select id_fonte_recurso, nome_fonte_recurso, total_liquidado
+from orcamento
+order by total_liquidado DESC
+limit 5;
 ```
 
 - 041	TESOURO - CREDITO POR SUPERAVIT FINANCEIRO
@@ -190,7 +195,8 @@ Uma vez que os dados estejam carregados na tabela, você pode utilizar as seguin
 **3. Quais são as 5 fontes de recursos com a melhor margem bruta?**
 
 ```sql
-  SELECT * FROM orcamento ORDER BY (Total_Arrecadado - Total_Liquidado) DESC LIMIT 5;
+SELECT id_fonte_recurso, nome_fonte_recurso, total_liquidado, total_arrecadado
+FROM orcamento ORDER BY (total_arrecadado - total_liquidado) DESC LIMIT 5;
 
 ```
 - 001	TESOURO-DOT.INICIAL E CRED.SUPLEMENTAR
@@ -203,7 +209,9 @@ Uma vez que os dados estejam carregados na tabela, você pode utilizar as seguin
 **4. Quais são as 5 fontes de recursos que menos arrecadaram?**
 
 ```sql
-  SELECT * FROM orcamento ORDER BY Total_Arrecadado ASC LIMIT 5;
+SELECT id_fonte_recurso, nome_fonte_recurso, total_arrecadado
+FROM orcamento ORDER BY total_arrecadado ASC
+LIMIT 5;
 ```
 
 - 041	TESOURO - CREDITO POR SUPERAVIT FINANCEIRO
@@ -217,7 +225,9 @@ Uma vez que os dados estejam carregados na tabela, você pode utilizar as seguin
 **5.Quais são as 5 fontes de recursos que menos gastaram?**
 
 ```sql
-SELECT * FROM orcamento ORDER BY Total_Liquidado ASC LIMIT 5;
+SELECT id_fonte_recurso, nome_fonte_recurso, total_liquidado
+FROM orcamento ORDER BY total_liquidado ASC
+LIMIT 5;
 ```
 - 043	F.E.D - CREDITO POR SUPERAVIT FINANCEIRO
 - 084	REC.PROPRIO-ADM.IND.-DOT.INIC.CR.SUPL.-INTRA
@@ -229,7 +239,9 @@ SELECT * FROM orcamento ORDER BY Total_Liquidado ASC LIMIT 5;
 **6. Quais são as 5 fontes de recursos com a pior margem bruta?**
 
 ```sql
-  SELECT * FROM orcamento ORDER BY (Total_Arrecadado - Total_Liquidado) ASC LIMIT 5;
+SELECT id_fonte_recurso, nome_fonte_recurso, total_arrecadado, total_liquidado
+FROM orcamento ORDER BY (total_arrecadado - total_liquidado) ASC
+LIMIT 5;
 
 ```
 - 043	F.E.D - CREDITO POR SUPERAVIT FINANCEIRO
@@ -243,7 +255,7 @@ SELECT * FROM orcamento ORDER BY Total_Liquidado ASC LIMIT 5;
 **7. Qual a média de arrecadação por fonte de recurso?**
 
 ```sql
-  SELECT AVG(Total_Arrecadado) FROM orcamento;
+  SELECT AVG(total_arrecadado) FROM orcamento;
 
 ```
 
@@ -254,7 +266,7 @@ SELECT * FROM orcamento ORDER BY Total_Liquidado ASC LIMIT 5;
 **8. Qual a média de gastos por fonte de recurso?**
 
 ```sql
-SELECT AVG(Total_Liquidado) FROM orcamento;
+SELECT AVG(total_liquidado) FROM orcamento;
 
 ```
 222.860.257,96
