@@ -13230,3 +13230,17 @@ LINE 3: ...('001', 'TESOURO-DOT.INICIAL E CRED.SUPLEMENTAR', np.float64...
 2024-06-20 11:02:30,780 - INFO - Tabela criada com sucesso: orcamento
 2024-06-20 11:02:31,705 - INFO - Dados inseridos com sucesso na tabela orcamento.
 2024-06-20 11:02:31,705 - INFO - Conexão com banco de dados fechada.
+2024-06-20 11:08:13,110 - INFO - Início da transformação de despesas
+2024-06-20 11:08:13,138 - INFO - Dados de despesas transformados com sucesso
+2024-06-20 11:08:13,138 - INFO - Dados de despesas extraídos e transformados com sucesso!
+2024-06-20 11:08:13,147 - INFO - Início da transformação de receitas
+2024-06-20 11:08:13,153 - INFO - Dados de receitas transformados com sucesso
+2024-06-20 11:08:13,153 - INFO - Dados de receitas extraídos e transformados com sucesso!
+2024-06-20 11:08:20,229 - INFO - Início da transformação de despesas
+2024-06-20 11:08:20,246 - INFO - Dados de despesas transformados com sucesso
+2024-06-20 11:08:20,246 - INFO - Início da transformação de receitas
+2024-06-20 11:08:20,253 - INFO - Dados de receitas transformados com sucesso
+2024-06-20 11:08:20,287 - INFO - Conexão com banco de dados PostgreSQL estabelecida.
+2024-06-20 11:08:20,289 - INFO - Tabela criada com sucesso: orcamento
+2024-06-20 11:08:21,246 - INFO - Dados inseridos com sucesso na tabela orcamento.
+2024-06-20 11:08:21,246 - INFO - Conexão com banco de dados fechada.
