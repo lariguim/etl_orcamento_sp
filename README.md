@@ -46,7 +46,7 @@ pip install -r requirements.txt
 
 **3. Configurar o Docker compose**
 
-`
+```bash
       AIRFLOW__CORE__FERNET_KEY: 'fernet_key'
     
 
