@@ -106,15 +106,17 @@ Acesse a interface do Airflow em http://localhost:8080, ative a DAG orcamento_et
 
 ## Premissas de Negócio
 
-- Transformaçoes realizadas:
-      - Remoção dos pontos (.) dos números para garantir que sejam interpretados corretamente como números float.
-      - Substituição da vírgula (.) por ponto (.) para garantir a correta formatação numérica.
-      - Conversão dos valores para tipo numérico usando pd.to_numeric, com a opção errors='coerce' para lidar com valores inválidos.
-      - Filtragem de valores nulos e zeros, considerando que, fonte de recurso sem liquidacao e sem arrecadacao nao sao relevantes em análises. 
-      - Remoçao de linhas onde Fonte de Recurso está ausente.
-Pontos Importantes:
-      - Ambas as funções de transformação (transform_despesas e transform_receitas) são projetadas para lidar com erros de formatação nos valores numéricos, como pontos e vírgulas.
-      - Após as transformações, os DataFrames resultantes (df_despesas_transform e df_receitas_transform) são utilizados para inserir os dados no banco de dados ou para outros fins de análise ou processamento.
+- Transformações realizadas:
+  - Remoção dos pontos (.) dos números para garantir que sejam interpretados corretamente como números float.
+  - Substituição da vírgula (.) por ponto (.) para garantir a correta formatação numérica.
+  - Conversão dos valores para tipo numérico usando `pd.to_numeric`, com a opção `errors='coerce'` para lidar com valores inválidos.
+  - Filtragem de valores nulos e zeros, considerando que fontes de recurso sem liquidação e sem arrecadação não são relevantes em análises.
+  - Remoção de linhas onde a Fonte de Recurso está ausente.
+
+- Pontos Importantes:
+  - Ambas as funções de transformação (`transform_despesas` e `transform_receitas`) são projetadas para lidar com erros de formatação nos valores numéricos, como pontos e vírgulas.
+  - Após as transformações, os DataFrames resultantes (`df_despesas_transform` e `df_receitas_transform`) são utilizados para inserir os dados no banco de dados ou para outros fins de análise ou processamento.
+
 
 ## Respondendo Perguntas de négocio com SQL
 
