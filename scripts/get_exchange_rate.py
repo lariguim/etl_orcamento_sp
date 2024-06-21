@@ -19,7 +19,7 @@ def get_exchange_rate_on_date():
         print(f"Erro ao obter a taxa de câmbio: {e}")
         return None
 
-# Chamada da função para teste
+
 if __name__ == "__main__":
     exchange_rate = get_exchange_rate_on_date()
     if exchange_rate:
