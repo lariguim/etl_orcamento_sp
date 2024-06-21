@@ -11,6 +11,6 @@ airflow users create \
     --lastname Admin \
     --role Admin \
     --password admin \
-    --email admin@example.com
+    
 
 airflow scheduler & airflow webserver
