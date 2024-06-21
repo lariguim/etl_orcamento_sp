@@ -8,7 +8,7 @@ def get_exchange_rate_on_date():
         data = response.json()
         
         if data:
-            # Extrai a taxa de câmbio do primeiro (e único) registro
+            
             exchange_rate = float(data[0]['bid'])
             return exchange_rate
         else:
