@@ -117,6 +117,20 @@ Acesse a interface do Airflow em http://localhost:8080, ative a DAG orcamento_et
   - Ambas as funções de transformação (`transform_despesas` e `transform_receitas`) são projetadas para lidar com erros de formatação nos valores numéricos, como pontos e vírgulas.
   - Após as transformações, os DataFrames resultantes (`df_despesas_transform` e `df_receitas_transform`) são utilizados para inserir os dados no banco de dados ou para outros fins de análise ou processamento.
 
+## Tabela final
+
+| ID Fonte Recurso  | Nome Fonte Recurso | Total Liquidado | Total Arrecadado |
+| ------------- | ------------- | ------------- | ------------- |
+| 001  | TESOURO-DOT.INICIAL E CRED.SUPLEMENTAR  | 9999.99 | 9999.99 |
+
+
+## Dicionário 
+
+- ID Fonte Recurso: Código da fonte de recurso segundo arquivo fonte
+- Nome da Fonte de Recurso: Nome da Fonte de Recurso segundo arquivo fonte
+- Total Liquidado: Valor da liquidação da despesa em Real
+- Total Arrecadado: Valor da arrecadação da receita em real
+
 
 ## Respondendo Perguntas de négocio com SQL
 
