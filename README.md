@@ -13,7 +13,7 @@ Este projeto consiste em desenvolver um pipeline ETL para processar os dados do 
 ![Estrutura](estrutura.png)
 
 
-## Pré Requisitos
+## Ferramentas
 
 - Docker
 - Docker Compose
@@ -23,7 +23,7 @@ Este projeto consiste em desenvolver um pipeline ETL para processar os dados do 
 - SQL
 
 
-## Instruções de Configuração
+## Instruções de configuração local
 
 **1. Clone o repositório para a sua máquina local:**
 
@@ -104,6 +104,7 @@ Acesse a interface do Airflow em http://localhost:8080, ative a DAG orcamento_et
 
 - etl.py: script principal do pipeline.
 
+
 ## Premissas de Negócio
 
 - Transformações realizadas:
@@ -117,11 +118,13 @@ Acesse a interface do Airflow em http://localhost:8080, ative a DAG orcamento_et
   - Ambas as funções de transformação (`transform_despesas` e `transform_receitas`) são projetadas para lidar com erros de formatação nos valores numéricos, como pontos e vírgulas.
   - Após as transformações, os DataFrames resultantes (`df_despesas_transform` e `df_receitas_transform`) são utilizados para inserir os dados no banco de dados ou para outros fins de análise ou processamento.
 
+
 ## Tabela final
 
 | ID Fonte Recurso  | Nome Fonte Recurso | Total Liquidado | Total Arrecadado |
 | ------------- | ------------- | ------------- | ------------- |
 | 001  | TESOURO-DOT.INICIAL E CRED.SUPLEMENTAR  | 9999.99 | 9999.99 |
+
 
 
 ## Dicionário 
@@ -132,7 +135,9 @@ Acesse a interface do Airflow em http://localhost:8080, ative a DAG orcamento_et
 - Total Arrecadado: Valor da arrecadação da receita em real
 
 
-## Perguntas de Negócio
+
+
+## Questões de Negócio
 
 Uma vez que os dados estejam carregados na tabela, você pode utilizar as seguintes consultas SQL para responder às perguntas:
 
