@@ -132,7 +132,7 @@ Acesse a interface do Airflow em http://localhost:8080, ative a DAG orcamento_et
 - Total Arrecadado: Valor da arrecadação da receita em real
 
 
-## Respondendo Perguntas de négocio com SQL
+## Perguntas de Negócio
 
 Uma vez que os dados estejam carregados na tabela, você pode utilizar as seguintes consultas SQL para responder às perguntas:
 
