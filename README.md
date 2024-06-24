@@ -8,12 +8,12 @@ Este projeto consiste em desenvolver um pipeline ETL para processar os dados do 
 
 
 
-## Estrutura do Projeto
+## 1.0 Estrutura do Projeto
 
 ![Estrutura](estrutura.png)
 
 
-## Ferramentas
+## 2.0 Ferramentas
 
 - Docker
 - Docker Compose
@@ -23,7 +23,7 @@ Este projeto consiste em desenvolver um pipeline ETL para processar os dados do 
 - SQL
 
 
-## Instruções de configuração local
+## 3.0 Instruções de configuração local
 
 **1. Clone o repositório para a sua máquina local:**
 
@@ -76,7 +76,7 @@ Acesse a interface web do Airflow em http://localhost:8080 e configure a conexã
 - airflow_user: admin
 - airflow_password: admin
 
-**Conexao PostgreSQL**
+**7. Conexao PostgreSQL**
 
 - Connection ID: postgres_default
 - Conn Type: Postgres
@@ -88,11 +88,11 @@ Acesse a interface web do Airflow em http://localhost:8080 e configure a conexã
 Acesse a interface web do Airflow em http://localhost:8080 e ative a DAG orcamento_etl_dag
 
 
-## Executando a DAG
+**8. Executando a DAG**
 Acesse a interface do Airflow em http://localhost:8080, ative a DAG orcamento_etl_dag e execute-a manualmente para iniciar o processo ETL
 
 
-## Scripts em ordem de execução: 
+**9. Scripts em ordem de execução:** 
 
 - extract.py: Contém funções para extração de dados de despesas e receitas.
 
@@ -105,7 +105,7 @@ Acesse a interface do Airflow em http://localhost:8080, ative a DAG orcamento_et
 - etl.py: script principal do pipeline.
 
 
-## Premissas de Negócio
+## 4.0 Premissas de Negócio
 
 - Transformações realizadas:
   - Remoção dos pontos (.) dos números para garantir que sejam interpretados corretamente como números float.
@@ -119,7 +119,7 @@ Acesse a interface do Airflow em http://localhost:8080, ative a DAG orcamento_et
   - Após as transformações, os DataFrames resultantes (`df_despesas_transform` e `df_receitas_transform`) são utilizados para inserir os dados no banco de dados ou para outros fins de análise ou processamento.
 
 
-## Tabela final
+## 5.0 Tabela final
 
 | ID Fonte Recurso  | Nome Fonte Recurso | Total Liquidado | Total Arrecadado |
 | ------------- | ------------- | ------------- | ------------- |
@@ -127,7 +127,7 @@ Acesse a interface do Airflow em http://localhost:8080, ative a DAG orcamento_et
 
 
 
-## Dicionário 
+## 6.0 Dicionário 
 
 - ID Fonte Recurso: Código da fonte de recurso segundo arquivo fonte
 - Nome da Fonte de Recurso: Nome da Fonte de Recurso segundo arquivo fonte
@@ -137,7 +137,7 @@ Acesse a interface do Airflow em http://localhost:8080, ative a DAG orcamento_et
 
 
 
-## Questões de Negócio
+## 7.0 Questões de Negócio
 
 Uma vez que os dados estejam carregados na tabela, você pode utilizar as seguintes consultas SQL para responder às perguntas:
 
@@ -254,19 +254,19 @@ SELECT AVG(total_liquidado) FROM orcamento;
 222.860.257,96
 
 
-## Observações
+## 8.0 Observações
 
 O projeto foi salvo em um banco PostgreSQL por ser uma versao gratuita de banco de dados. Não utilizei o BigQuery conforme preferencia devido a falta de recursos para acessar a Cloud. 
 
 
-## Documentação
+## 9.0 Documentação
 
 - [Docker](https://docs.docker.com/manuals/)
 - [Airflow](https://airflow.apache.org/docs/)
 
 
 
-## Próximos Passos
+## 10.0 Próximos Passos
 
 
 Essa projeto foi dividido em ciclos e essa entrega corresponde ao ciclo 1 do projeto, a primeira versao do nosso pipeline de etl para orçamentos do estado de SP. O ciclo 1 tem, tem o objetivo de estruturar uma entrega rápida pensado estratégicamente para munir o negócio de informações.
