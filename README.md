@@ -254,7 +254,7 @@ SELECT AVG(total_liquidado) FROM orcamento;
 O projeto foi salvo em um banco PostgreSQL por ser uma versao gratuita de banco de dados. Não utilizei o BigQuery conforme preferencia devido a falta de recursos para acessar a Cloud. 
 
 
-## Documentation
+## Documentação
 
 - [Docker](https://docs.docker.com/manuals/)
 - [Airflow](https://airflow.apache.org/docs/)
