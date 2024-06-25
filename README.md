@@ -10,38 +10,38 @@ O projeto é dividido em módulos que desempenham funções específicas em cada
 Responsável pela extração dos dados brutos de despesas e receitas do orçamento.
 
 Funções:
-extract_despesas: Conecta-se às fontes de dados de despesas e recupera os dados em um formato bruto.
-extract_receitas: Conecta-se às fontes de dados de receitas e recupera os dados em um formato bruto.
+- extract_despesas: Conecta-se às fontes de dados de despesas e recupera os dados em um formato bruto.
+- extract_receitas: Conecta-se às fontes de dados de receitas e recupera os dados em um formato bruto.
 
 **2.2 get_exchange_rate.py**
 Contém funções para obter a taxa de câmbio do dia 22/06/2022.
 
 Funções
-get_exchange_rate_on_date: Conecta-se a um serviço de câmbio ou API para recuperar a taxa de câmbio específica para a data 22/06/2022.
+- get_exchange_rate_on_date: Conecta-se a um serviço de câmbio ou API para recuperar a taxa de câmbio específica para a data 22/06/2022.
 
 **2.3. transform.py**
 Responsável pela transformação dos dados extraídos em um formato padronizado.
 
 Funções
-clean_data: Limpa os dados brutos, removendo inconsistências, duplicidades e valores inválidos.
-transform_despesas: Transforma os dados de despesas, ajustando formatos e aplicando conversão de moeda, se necessário.
-transform_receitas: Transforma os dados de receitas, ajustando formatos e aplicando conversão de moeda, se necessário.
+- clean_data: Limpa os dados brutos, removendo inconsistências, duplicidades e valores inválidos.
+- transform_despesas: Transforma os dados de despesas, ajustando formatos e aplicando conversão de moeda, se necessário.
+- transform_receitas: Transforma os dados de receitas, ajustando formatos e aplicando conversão de moeda, se necessário.
 
 **2.4. load_data.py**
 Gerencia a conexão com o banco de dados PostgreSQL e carrega os dados transformados na tabela final chamada "orcamento".
 
 Funções
-create_db_connection: Estabelece e valida a conexão com o banco de dados PostgreSQL.
-load_to_orcamento: Insere os dados transformados na tabela "orcamento", garantindo a integridade e consistência dos dados.
+- create_db_connection: Estabelece e valida a conexão com o banco de dados PostgreSQL.
+- load_to_orcamento: Insere os dados transformados na tabela "orcamento", garantindo a integridade e consistência dos dados.
 
 **2.5. etl.py**
 Script principal do pipeline ETL, responsável por orquestrar todas as etapas do processo de ETL.
 
 Funcionalidades
-Extração: Utiliza as funções em extract.py para extrair dados brutos de despesas e receitas.
-Transformação: Utiliza as funções em transform.py para limpar, transformar e preparar os dados para carga.
-Carga: Utiliza as funções em load_data.py para estabelecer conexão com o banco de dados e carregar os dados transformados na tabela "orcamento".
-Gestão de Erros: Utiliza logging para registrar informações detalhadas sobre o processo, incluindo erros e status de execução.
+- Extração: Utiliza as funções em extract.py para extrair dados brutos de despesas e receitas.
+- Transformação: Utiliza as funções em transform.py para limpar, transformar e preparar os dados para carga.
+- Carga: Utiliza as funções em load_data.py para estabelecer conexão com o banco de dados e carregar os dados transformados na tabela "orcamento".
+- Gestão de Erros: Utiliza logging para registrar informações detalhadas sobre o processo, incluindo erros e status de execução.
 
 Configuração
 Antes de executar o script etl.py, certifique-se de configurar corretamente os parâmetros de conexão com o banco de dados PostgreSQL em load_data.py.
@@ -68,7 +68,7 @@ Dependências: Verifique e instale as bibliotecas necessárias, como psycopg2, p
 - SQL
 
 
-## 3.0 Instruções de configuração local
+## 3.0 Instruções de Configuração 
 
 **3.1. Clone o repositório para a sua máquina local:**
 
