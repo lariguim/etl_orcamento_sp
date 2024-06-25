@@ -1,19 +1,64 @@
+# Projeto ETL orcamento SP
 
-# ETL Orçamento SP
+## 1.0 Visão Geral
+O projeto ETL Orçamento SP automatiza o processo de extração, transformação e carga (ETL) de dados de despesas e receitas do orçamento de São Paulo. Utiliza técnicas para limpar, normalizar, enriquecer e converter dados, garantindo sua integridade e consistência ao serem carregados em um banco de dados PostgreSQL.
 
-Este projeto consiste em desenvolver um pipeline ETL para processar os dados do orçamento do Estado de São Paulo de 2022, convertendo valores dolarizados para reais e armazenando-os em um formato adequado para responder às perguntas de negócio.
+## 2.0 Estrutura do Projeto
+O projeto é dividido em módulos que desempenham funções específicas em cada etapa do processo ETL:
 
+**2.1. extract.py**
+Responsável pela extração dos dados brutos de despesas e receitas do orçamento.
 
+Funções:
+extract_despesas: Conecta-se às fontes de dados de despesas e recupera os dados em um formato bruto.
+extract_receitas: Conecta-se às fontes de dados de receitas e recupera os dados em um formato bruto.
 
+**2.2 get_exchange_rate.py**
+Contém funções para obter a taxa de câmbio do dia 22/06/2022.
 
+Funções
+get_exchange_rate_on_date: Conecta-se a um serviço de câmbio ou API para recuperar a taxa de câmbio específica para a data 22/06/2022.
 
+**2.3. transform.py**
+Responsável pela transformação dos dados extraídos em um formato padronizado.
 
-## 1.0 Estrutura do Projeto
+Funções
+clean_data: Limpa os dados brutos, removendo inconsistências, duplicidades e valores inválidos.
+transform_despesas: Transforma os dados de despesas, ajustando formatos e aplicando conversão de moeda, se necessário.
+transform_receitas: Transforma os dados de receitas, ajustando formatos e aplicando conversão de moeda, se necessário.
+
+**2.4. load_data.py**
+Gerencia a conexão com o banco de dados PostgreSQL e carrega os dados transformados na tabela final chamada "orcamento".
+
+Funções
+create_db_connection: Estabelece e valida a conexão com o banco de dados PostgreSQL.
+load_to_orcamento: Insere os dados transformados na tabela "orcamento", garantindo a integridade e consistência dos dados.
+
+**2.5. etl.py**
+Script principal do pipeline ETL, responsável por orquestrar todas as etapas do processo de ETL.
+
+Funcionalidades
+Extração: Utiliza as funções em extract.py para extrair dados brutos de despesas e receitas.
+Transformação: Utiliza as funções em transform.py para limpar, transformar e preparar os dados para carga.
+Carga: Utiliza as funções em load_data.py para estabelecer conexão com o banco de dados e carregar os dados transformados na tabela "orcamento".
+Gestão de Erros: Utiliza logging para registrar informações detalhadas sobre o processo, incluindo erros e status de execução.
+
+Configuração
+Antes de executar o script etl.py, certifique-se de configurar corretamente os parâmetros de conexão com o banco de dados PostgreSQL em load_data.py.
+
+Execução do Script
+Para iniciar o processo ETL, execute o script etl.py. Ele orquestrará todas as etapas de extração, transformação e carga dos dados.
+
+Notas Adicionais
+Gerenciamento de Erros: Cada módulo utiliza logging para registrar erros críticos, erros durante as etapas de transformação e carga de dados, e informações sobre o processo de extração e transformação.
+
+Dependências: Verifique e instale as bibliotecas necessárias, como psycopg2, pandas e requests, antes de executar os scripts.
+
 
 ![Estrutura](estrutura.png)
 
 
-## 2.0 Ferramentas
+## 3.0 Ferramentas
 
 - Docker
 - Docker Compose
@@ -25,7 +70,7 @@ Este projeto consiste em desenvolver um pipeline ETL para processar os dados do 
 
 ## 3.0 Instruções de configuração local
 
-**1. Clone o repositório para a sua máquina local:**
+**3.1. Clone o repositório para a sua máquina local:**
 
 ```bash
 git clone https://github.com/lariguim/etl_orcamento_sp.git
@@ -34,7 +79,7 @@ cd etl_orcamento_sp
 
 ```
 
-**2. Configurar o ambiente virtual:**
+**3.2. Configurar o ambiente virtual:**
 
 ```bash
 python -m venv etl_orcamento_sp
@@ -44,23 +89,21 @@ pip install -r requirements.txt
 
 ```
 
-**3. Configurar o Docker compose**
+**3.3. Configurar o Docker compose**
 
 ```bash
-      AIRFLOW__CORE__FERNET_KEY: 'fernet_key'
+AIRFLOW__CORE__FERNET_KEY: 'fernet_key'
     
-
-
 ```
 
-**4. Você pode gerar uma chave Fernet utilizando o script fernet_key.py:**
+**3.4. Você pode gerar uma chave Fernet utilizando o script fernet_key.py:**
 
 ```bash
   python scripts/fernet_key.py
 
 ```
 
-**5. Iniciar os serviços**
+**3.5. Iniciar os serviços**
 
 ```bash
 docker-compose up -d
@@ -69,14 +112,14 @@ docker-compose up -d
 ```
 
 
-**6. Configurar Airflow**
+**3.6. Configurar Airflow**
 
 Acesse a interface web do Airflow em http://localhost:8080 e configure a conexão com o PostgreSQL:
 
 - airflow_user: admin
 - airflow_password: admin
 
-**7. Conexao PostgreSQL**
+**3.7. Conexao PostgreSQL**
 
 - Connection ID: postgres_default
 - Conn Type: Postgres
@@ -88,33 +131,15 @@ Acesse a interface web do Airflow em http://localhost:8080 e configure a conexã
 Acesse a interface web do Airflow em http://localhost:8080 e ative a DAG orcamento_etl_dag
 
 
-**8. Executando a DAG**
+**3.8. Executando a DAG**
 Acesse a interface do Airflow em http://localhost:8080, ative a DAG orcamento_etl_dag e execute-a manualmente para iniciar o processo ETL
 
-
-**9. Scripts em ordem de execução:** 
-
-- extract.py: Contém funções para extração de dados de despesas e receitas.
-
-- get_exchange_rate.py: Contém funções para obter a taxa de câmbio no dia 22/06/2022.
-
-- transform.py: Contém funções para a transformação de dados de despesas e receitas.
-
-- load_data.py: Contem funçoes que criam conexoes com o banco PostgreSQL, e carregam os dados transformados em uma tabela final chamada orcamento.
-
-- etl.py: script principal do pipeline.
 
 
 ## 4.0 Premissas de Negócio
 
-- Transformações realizadas:
-  - Remoção dos pontos (.) dos números para garantir que sejam interpretados corretamente como números float.
-  - Substituição da vírgula (.) por ponto (.) para garantir a correta formatação numérica.
-  - Conversão dos valores para tipo numérico usando `pd.to_numeric`, com a opção `errors='coerce'` para lidar com valores inválidos.
   - Filtragem de valores nulos e zeros, considerando que fontes de recurso sem liquidação e sem arrecadação não são relevantes em análises.
   - Remoção de linhas onde a Fonte de Recurso está ausente.
-
-- Pontos Importantes:
   - Ambas as funções de transformação (`transform_despesas` e `transform_receitas`) são projetadas para lidar com erros de formatação nos valores numéricos, como pontos e vírgulas.
   - Após as transformações, os DataFrames resultantes (`df_despesas_transform` e `df_receitas_transform`) são utilizados para inserir os dados no banco de dados ou para outros fins de análise ou processamento.
 
@@ -127,7 +152,7 @@ Acesse a interface do Airflow em http://localhost:8080, ative a DAG orcamento_et
 
 
 
-## 6.0 Dicionário 
+## 6.0 Dicionário de Dados
 
 - ID Fonte Recurso: Código da fonte de recurso segundo arquivo fonte
 - Nome da Fonte de Recurso: Nome da Fonte de Recurso segundo arquivo fonte
