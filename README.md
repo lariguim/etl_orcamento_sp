@@ -1,70 +1,65 @@
-# Projeto ETL orcamento SP
+## Projeto ETL Orçamento SP
 
-## 1.0 Visão Geral
+### 1.0 Visão Geral
 O projeto ETL Orçamento SP automatiza o processo de extração, transformação e carga (ETL) de dados de despesas e receitas do orçamento de São Paulo. Utiliza técnicas para limpar, normalizar, enriquecer e converter dados, garantindo sua integridade e consistência ao serem carregados em um banco de dados PostgreSQL.
 
-## 2.0 Estrutura do Projeto
+### 2.0 Estrutura do Projeto
 O projeto é dividido em módulos que desempenham funções específicas em cada etapa do processo ETL:
 
-**2.1. extract.py**
+#### 2.1. extract.py
 Responsável pela extração dos dados brutos de despesas e receitas do orçamento.
 
-Funções:
-- extract_despesas: Conecta-se às fontes de dados de despesas e recupera os dados em um formato bruto.
-- extract_receitas: Conecta-se às fontes de dados de receitas e recupera os dados em um formato bruto.
+**Funções:**
+- **extract_despesas:** Conecta-se às fontes de dados de despesas e recupera os dados em um formato bruto.
+- **extract_receitas:** Conecta-se às fontes de dados de receitas e recupera os dados em um formato bruto.
 
-**2.2 get_exchange_rate.py**
+#### 2.2 get_exchange_rate.py
 Contém funções para obter a taxa de câmbio do dia 22/06/2022.
 
-Funções
-- get_exchange_rate_on_date: Conecta-se a um serviço de câmbio ou API para recuperar a taxa de câmbio específica para a data 22/06/2022.
+**Funções:**
+- **get_exchange_rate_on_date:** Conecta-se a um serviço de câmbio ou API para recuperar a taxa de câmbio específica para a data 22/06/2022.
 
-**2.3. transform.py**
+#### 2.3. transform.py
 Responsável pela transformação dos dados extraídos em um formato padronizado.
 
-Funções
-- clean_data: Limpa os dados brutos, removendo inconsistências, duplicidades e valores inválidos.
-- transform_despesas: Transforma os dados de despesas, ajustando formatos e aplicando conversão de moeda, se necessário.
-- transform_receitas: Transforma os dados de receitas, ajustando formatos e aplicando conversão de moeda, se necessário.
+**Funções:**
+- **clean_data:** Limpa os dados brutos, removendo inconsistências, duplicidades e valores inválidos.
+- **transform_despesas:** Transforma os dados de despesas, ajustando formatos e aplicando conversão de moeda, se necessário.
+- **transform_receitas:** Transforma os dados de receitas, ajustando formatos e aplicando conversão de moeda, se necessário.
 
-**2.4. load_data.py**
+#### 2.4. load_data.py
 Gerencia a conexão com o banco de dados PostgreSQL e carrega os dados transformados na tabela final chamada "orcamento".
 
-Funções
-- create_db_connection: Estabelece e valida a conexão com o banco de dados PostgreSQL.
-- load_to_orcamento: Insere os dados transformados na tabela "orcamento", garantindo a integridade e consistência dos dados.
+**Funções:**
+- **create_db_connection:** Estabelece e valida a conexão com o banco de dados PostgreSQL.
+- **load_to_orcamento:** Insere os dados transformados na tabela "orcamento", garantindo a integridade e consistência dos dados.
 
-**2.5. etl.py**
+#### 2.5. etl.py
 Script principal do pipeline ETL, responsável por orquestrar todas as etapas do processo de ETL.
 
-Funcionalidades
-- Extração: Utiliza as funções em extract.py para extrair dados brutos de despesas e receitas.
-- Transformação: Utiliza as funções em transform.py para limpar, transformar e preparar os dados para carga.
-- Carga: Utiliza as funções em load_data.py para estabelecer conexão com o banco de dados e carregar os dados transformados na tabela "orcamento".
-- Gestão de Erros: Utiliza logging para registrar informações detalhadas sobre o processo, incluindo erros e status de execução.
+**Funcionalidades:**
+- **Extração:** Utiliza as funções em extract.py para extrair dados brutos de despesas e receitas.
+- **Transformação:** Utiliza as funções em transform.py para limpar, transformar e preparar os dados para carga.
+- **Carga:** Utiliza as funções em load_data.py para estabelecer conexão com o banco de dados e carregar os dados transformados na tabela "orcamento".
+- **Gestão de Erros:** Utiliza logging para registrar informações detalhadas sobre o processo, incluindo erros e status de execução.
 
-Configuração
+**Configuração:**
 Antes de executar o script etl.py, certifique-se de configurar corretamente os parâmetros de conexão com o banco de dados PostgreSQL em load_data.py.
 
-Execução do Script
+**Execução do Script:**
 Para iniciar o processo ETL, execute o script etl.py. Ele orquestrará todas as etapas de extração, transformação e carga dos dados.
 
-Notas Adicionais
+**Notas Adicionais:**
 Gerenciamento de Erros: Cada módulo utiliza logging para registrar erros críticos, erros durante as etapas de transformação e carga de dados, e informações sobre o processo de extração e transformação.
 
-**PARA EXECUÇÃO SIGA AS INSTRUÇÕES DE CONFIGURAÇÃO DO AMBIENTE ABAIXO**
+### 3.0 Instruções de Configuração 
 
-![Estrutura](estrutura.png)
-
-
-
-## 3.0 Instruções de Configuração 
-
-**3.1. Clone o repositório para a sua máquina local:**
+#### 3.1. Clone o repositório para a sua máquina local:
 
 ```bash
 git clone https://github.com/lariguim/etl_orcamento_sp.git
 cd etl_orcamento_sp
+
 
 
 ```
@@ -86,7 +81,9 @@ AIRFLOW__CORE__FERNET_KEY: 'fernet_key'
     
 ```
 
-**3.4. Você pode gerar uma chave Fernet utilizando o script fernet_key.py:**
+**3.4. Gerar uma chave Fernet utilizando o script fernet_key.py:
+bash
+**
 
 ```bash
   python scripts/fernet_key.py
