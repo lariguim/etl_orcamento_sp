@@ -52,20 +52,10 @@ Para iniciar o processo ETL, execute o script etl.py. Ele orquestrará todas as 
 Notas Adicionais
 Gerenciamento de Erros: Cada módulo utiliza logging para registrar erros críticos, erros durante as etapas de transformação e carga de dados, e informações sobre o processo de extração e transformação.
 
-Dependências: Verifique e instale as bibliotecas necessárias, como psycopg2, pandas e requests, antes de executar os scripts.
-
+**PARA EXECUÇÃO SIGA AS INSTRUÇÕES DE CONFIGURAÇÃO DO AMBIENTE ABAIXO**
 
 ![Estrutura](estrutura.png)
 
-
-## 3.0 Ferramentas
-
-- Docker
-- Docker Compose
-- Git
-- Airflow
-- Python
-- SQL
 
 
 ## 3.0 Instruções de Configuração 
